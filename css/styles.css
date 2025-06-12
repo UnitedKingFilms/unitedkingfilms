@@ -287,15 +287,15 @@ button {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     align-items: center;
-    min-height: 60px; /* Minimum height even when empty */
+    min-height: 120px; /* Minimum height even when empty - doubled */
 }
 
 .festival-logo {
-    max-width: 80px;
-    max-height: 60px;
+    max-width: 160px; /* Doubled from 80px */
+    max-height: 120px; /* Doubled from 60px */
     width: auto;
     height: auto;
     object-fit: contain;
@@ -465,11 +465,12 @@ button {
     .festival-logos-container {
         justify-content: center;
         margin-top: 15px;
+        gap: 12px; /* Increased gap for larger logos */
     }
     
     .festival-logo {
-        max-width: 60px;
-        max-height: 45px;
+        max-width: 120px; /* Doubled from 60px */
+        max-height: 90px; /* Doubled from 45px */
     }
     
     .primary-button {
