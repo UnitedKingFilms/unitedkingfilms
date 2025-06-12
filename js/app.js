@@ -90,7 +90,8 @@ const App = (function() {
             maud: document.getElementById('maud'),
             mgenre: document.getElementById('mgenre'),
             mlength: document.getElementById('mlength'),
-            video: document.getElementById('video')
+            video: document.getElementById('video'),
+            festivalLogos: document.getElementById('festivalLogos') // Add festival logos container
         };
         
         log("DOM elements cached");
@@ -546,6 +547,44 @@ const App = (function() {
     };
     
     /**
+     * Display festival logos
+     * @param {Array} festivalLogos - Array of festival logo URLs
+     */
+    const displayFestivalLogos = (festivalLogos) => {
+        if (!elements.festivalLogos) {
+            log("Festival logos container not found");
+            return;
+        }
+        
+        // Clear existing logos
+        elements.festivalLogos.innerHTML = '';
+        
+        // If no festival data or empty array, hide container
+        if (!festivalLogos || !Array.isArray(festivalLogos) || festivalLogos.length === 0) {
+            elements.festivalLogos.style.display = 'none';
+            return;
+        }
+        
+        // Show container and add logos
+        elements.festivalLogos.style.display = 'flex';
+        
+        festivalLogos.forEach((logoUrl, index) => {
+            if (logoUrl && typeof logoUrl === 'string' && logoUrl.trim() !== '') {
+                const logoImg = document.createElement('img');
+                logoImg.className = 'festival-logo';
+                logoImg.alt = `Festival Logo ${index + 1}`;
+                
+                // Use safe image setter for festival logos
+                setSafeImageSrc(logoImg, logoUrl, `Festival Logo ${index + 1}`);
+                
+                elements.festivalLogos.appendChild(logoImg);
+            }
+        });
+        
+        log(`Added ${festivalLogos.length} festival logos`);
+    };
+    
+    /**
      * Display film details in the detail view
      * @param {Object} film - Film data
      */
@@ -568,6 +607,9 @@ const App = (function() {
                     
                 setSafeImageSrc(elements.moviePoster, film.image || defaultImage, film.title || 'Film Poster');
             }
+            
+            // Display festival logos
+            displayFestivalLogos(film.fest);
             
             // Update text elements - with null checks
             if (elements.movieTitle) elements.movieTitle.textContent = film.title || '';
@@ -601,8 +643,13 @@ const App = (function() {
                 elements.maud.textContent = audText;
             }
             
-            // Handle festival field - now last in info-section
-            if (film.fest && elements.mfest && elements.fests) {
+            // Handle festival field in meta section (for text display)
+            if (film.fest && Array.isArray(film.fest) && film.fest.length > 0 && elements.mfest && elements.fests) {
+                // If fest is an array of URLs, just show "כן" or count
+                elements.mfest.textContent = `${film.fest.length} פסטיבלים`;
+                elements.fests.style.display = 'block';
+            } else if (typeof film.fest === 'string' && film.fest && elements.mfest && elements.fests) {
+                // If fest is still a string (old format)
                 elements.mfest.textContent = film.fest;
                 elements.fests.style.display = 'block';
             } else if (elements.fests) {
@@ -612,14 +659,32 @@ const App = (function() {
             // Director moved below info-section
             if (elements.movieDirector) elements.movieDirector.textContent = film.director || '';
             
-            // Handle video - with safety checks
+            // Handle video - with safety checks and add title
             if (elements.video) {
+                const videoContainer = elements.video.parentElement;
+                
                 if (film.video && typeof film.video === 'string' && film.video.trim() !== '') {
+                    // Add video title if not already exists
+                    let videoTitle = videoContainer.querySelector('h3');
+                    if (!videoTitle) {
+                        videoTitle = document.createElement('h3');
+                        videoTitle.textContent = 'טריילר:';
+                        videoContainer.insertBefore(videoTitle, elements.video);
+                    }
+                    
                     elements.video.src = film.video;
                     elements.video.style.display = 'block';
+                    videoContainer.style.display = 'block';
                 } else {
+                    // Remove video title if exists
+                    const videoTitle = videoContainer.querySelector('h3');
+                    if (videoTitle) {
+                        videoTitle.remove();
+                    }
+                    
                     elements.video.style.display = 'none';
                     elements.video.src = '';
+                    videoContainer.style.display = 'none';
                 }
             }
             
