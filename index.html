@@ -53,6 +53,10 @@
         <div class="detail-content">
             <div class="poster-section">
                 <img id="moviePoster" class="movie-poster" src="" alt="Movie Poster">
+                <!-- Festival logos container -->
+                <div id="festivalLogos" class="festival-logos-container">
+                    <!-- Festival logos will be populated by JavaScript -->
+                </div>
             </div>
             
             <div class="info-section">
@@ -81,11 +85,10 @@
                     </div>
                 </div>
 
-                 <div class="movie-director-div">
+                <div class="movie-director-div">
                     <h3>בימוי:</h3>
                     <p id="movieDirector" class="movie-director"></p>
                 </div>
-                
                 
                 <div class="movie-cast">
                     <h3>שחקנים:</h3>
@@ -96,11 +99,12 @@
                     <h3>תקציר:</h3>
                     <p id="movieSynopsis"></p>
                 </div>
+                
+                <!-- Video container moved here to align with other titles -->
+                <div class="video-container">
+                    <video id="video" controls style="display: none;"></video>
+                </div>
             </div>
-        </div>
-        
-        <div class="video-container">
-            <video id="video" controls style="display: none;"></video>
         </div>
     </div>
 
