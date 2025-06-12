@@ -42,7 +42,7 @@
     "genre": ["דרמה"],
     "aud": ["נוער", "סרט חברתי", "שוליים", "נשים"],
     "length": "87",
-    "fest": "",
+    "fest":  ["img/fest/girls3.png", "img/fest/girls2.png","img/fest/girls.png"],
     "show": "show",
     "rel": "אוגוסט 2025",
     "video": "./trl/grils.mp4"
