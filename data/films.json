@@ -42,7 +42,7 @@
     "genre": ["דרמה"],
     "aud": ["נוער", "סרט חברתי", "שוליים", "נשים"],
     "length": "87",
-    "fest":  ["img/fest/girls3.png", "img/fest/girls2.png","img/fest/girls.png"],
+    "fest":  ["img/fest/girls.png", "img/fest/girls2.png","img/fest/girls3.png","img/fest/girls4.png"],
     "show": "show",
     "rel": "אוגוסט 2025",
     "video": "./trl/grils.mp4"
@@ -57,7 +57,7 @@
     "genre": ["קומדיה שחורה", "רומנטי"],
     "aud": ["צעירים"],
     "length": "100",
-    "fest": "",
+    "fest": ["img/fest/love.png", "img/fest/love2.png","img/fest/love3.png","img/fest/love4.png"],
     "show": "show",
     "rel": "אוגוסט 2025",
     "video": "./trl/ducks.mp4"
