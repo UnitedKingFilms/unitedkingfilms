@@ -282,6 +282,30 @@ button {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Enhanced shadow */
 }
 
+/* Festival logos styles */
+.festival-logos-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px; /* Minimum height even when empty */
+}
+
+.festival-logo {
+    max-width: 80px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.festival-logo:hover {
+    transform: scale(1.1);
+}
+
 .info-section {
     flex: 1;
 }
@@ -368,14 +392,22 @@ button {
     font-size: 18px; /* Added explicit font size for headings */
 }
 
+/* Video container now inside info-section */
 .video-container {
-    margin-top: 40px; /* Increased from 30px */
+    margin-top: 25px; /* Reduced margin since it's inside info-section now */
+    margin-bottom: 20px; /* Added bottom margin */
+}
+
+.video-container h3 {
+    color: #f5f5f5;
+    font-size: 18px;
+    margin-bottom: 12px;
 }
 
 #video {
     width: 100%;
-    max-width: 1000px; /* Increased from 800px */
-    margin: 0 auto;
+    max-width: 600px; /* Reduced from 1000px to fit within info-section */
+    margin: 0;
     display: block;
     border-radius: 12px; /* Increased from 8px */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
@@ -397,10 +429,7 @@ button {
     animation: fadeOut 0.5s ease-in-out forwards;
 }
 
-
-
-
-/* Responsive adjustments - LEAVE THESE UNCHANGED */
+/* Responsive adjustments - UPDATED FOR NEW LAYOUT */
 @media (max-width: 767px) {
     .gallery-item {
         flex: 0 0 calc(33.333% - 14px); /* 3 items per row on smaller screens */
@@ -433,6 +462,16 @@ button {
         display: block;
     }
     
+    .festival-logos-container {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .festival-logo {
+        max-width: 60px;
+        max-height: 45px;
+    }
+    
     .primary-button {
         width: 120px;
         height: 40px;
@@ -441,5 +480,9 @@ button {
     .back-button {
         width: 100px;
         height: 35px;
+    }
+    
+    #video {
+        max-width: 100%;
     }
 }
